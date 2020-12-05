@@ -1,4 +1,4 @@
-// Copyright 1998-2019 Epic Games, Inc. All Rights Reserved.
+// Copyright Epic Games, Inc. All Rights Reserved.
 /*===========================================================================
 	Generated code exported from UnrealHeaderTool.
 	DO NOT modify this manually! Edit the corresponding .h files instead!
@@ -75,7 +75,7 @@ void EmptyLinkFunctionForGeneratedCodesfBodyActor() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AsfBodyActor, 2340431708);
+	IMPLEMENT_CLASS(AsfBodyActor, 4260807157);
 	template<> SCENEFUSION_API UClass* StaticClass<AsfBodyActor>()
 	{
 		return AsfBodyActor::StaticClass();

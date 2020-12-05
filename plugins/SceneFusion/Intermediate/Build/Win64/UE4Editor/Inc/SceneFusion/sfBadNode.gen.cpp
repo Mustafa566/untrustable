@@ -1,4 +1,4 @@
-// Copyright 1998-2019 Epic Games, Inc. All Rights Reserved.
+// Copyright Epic Games, Inc. All Rights Reserved.
 /*===========================================================================
 	Generated code exported from UnrealHeaderTool.
 	DO NOT modify this manually! Edit the corresponding .h files instead!
@@ -76,7 +76,7 @@ void EmptyLinkFunctionForGeneratedCodesfBadNode() {}
 		{ "ModuleRelativePath", "Private/Objects/sfBadNode.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FMapPropertyParams Z_Construct_UClass_UsfBadNode_Statics::NewProp_ReferenceMap = { "ReferenceMap", nullptr, (EPropertyFlags)0x0010000000000000, UE4CodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UsfBadNode, ReferenceMap), METADATA_PARAMS(Z_Construct_UClass_UsfBadNode_Statics::NewProp_ReferenceMap_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UsfBadNode_Statics::NewProp_ReferenceMap_MetaData)) };
+	const UE4CodeGen_Private::FMapPropertyParams Z_Construct_UClass_UsfBadNode_Statics::NewProp_ReferenceMap = { "ReferenceMap", nullptr, (EPropertyFlags)0x0010000000000000, UE4CodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UsfBadNode, ReferenceMap), EMapPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_UsfBadNode_Statics::NewProp_ReferenceMap_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UsfBadNode_Statics::NewProp_ReferenceMap_MetaData)) };
 	const UE4CodeGen_Private::FUInt32PropertyParams Z_Construct_UClass_UsfBadNode_Statics::NewProp_ReferenceMap_Key_KeyProp = { "ReferenceMap_Key", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::UInt32, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, METADATA_PARAMS(nullptr, 0) };
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UsfBadNode_Statics::NewProp_ReferenceMap_ValueProp = { "ReferenceMap", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, 1, Z_Construct_UClass_UObject_NoRegister, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
@@ -84,7 +84,7 @@ void EmptyLinkFunctionForGeneratedCodesfBadNode() {}
 		{ "ModuleRelativePath", "Private/Objects/sfBadNode.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FMapPropertyParams Z_Construct_UClass_UsfBadNode_Statics::NewProp_SerializedData = { "SerializedData", nullptr, (EPropertyFlags)0x0010000000000000, UE4CodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UsfBadNode, SerializedData), METADATA_PARAMS(Z_Construct_UClass_UsfBadNode_Statics::NewProp_SerializedData_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UsfBadNode_Statics::NewProp_SerializedData_MetaData)) };
+	const UE4CodeGen_Private::FMapPropertyParams Z_Construct_UClass_UsfBadNode_Statics::NewProp_SerializedData = { "SerializedData", nullptr, (EPropertyFlags)0x0010000000000000, UE4CodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UsfBadNode, SerializedData), EMapPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_UsfBadNode_Statics::NewProp_SerializedData_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UsfBadNode_Statics::NewProp_SerializedData_MetaData)) };
 	const UE4CodeGen_Private::FNamePropertyParams Z_Construct_UClass_UsfBadNode_Statics::NewProp_SerializedData_Key_KeyProp = { "SerializedData_Key", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, METADATA_PARAMS(nullptr, 0) };
 	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UClass_UsfBadNode_Statics::NewProp_SerializedData_ValueProp = { "SerializedData", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, 1, Z_Construct_UScriptStruct_FsfByteArray, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
@@ -140,7 +140,7 @@ void EmptyLinkFunctionForGeneratedCodesfBadNode() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UsfBadNode, 1280189283);
+	IMPLEMENT_CLASS(UsfBadNode, 3737873834);
 	template<> SCENEFUSION_API UClass* StaticClass<UsfBadNode>()
 	{
 		return UsfBadNode::StaticClass();

@@ -1,4 +1,4 @@
-// Copyright 1998-2019 Epic Games, Inc. All Rights Reserved.
+// Copyright Epic Games, Inc. All Rights Reserved.
 /*===========================================================================
 	Generated code exported from UnrealHeaderTool.
 	DO NOT modify this manually! Edit the corresponding .h files instead!
@@ -60,7 +60,7 @@ void EmptyLinkFunctionForGeneratedCodesfStandInTrackerActor() {}
 		{ "ToolTip", "Stand-ins referenced in the level." },
 	};
 #endif
-	const UE4CodeGen_Private::FArrayPropertyParams Z_Construct_UClass_AsfStandInTrackerActor_Statics::NewProp_StandIns = { "StandIns", nullptr, (EPropertyFlags)0x0014000000000000, UE4CodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AsfStandInTrackerActor, StandIns), METADATA_PARAMS(Z_Construct_UClass_AsfStandInTrackerActor_Statics::NewProp_StandIns_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AsfStandInTrackerActor_Statics::NewProp_StandIns_MetaData)) };
+	const UE4CodeGen_Private::FArrayPropertyParams Z_Construct_UClass_AsfStandInTrackerActor_Statics::NewProp_StandIns = { "StandIns", nullptr, (EPropertyFlags)0x0014000000000000, UE4CodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AsfStandInTrackerActor, StandIns), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_AsfStandInTrackerActor_Statics::NewProp_StandIns_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AsfStandInTrackerActor_Statics::NewProp_StandIns_MetaData)) };
 	const UE4CodeGen_Private::FWeakObjectPropertyParams Z_Construct_UClass_AsfStandInTrackerActor_Statics::NewProp_StandIns_Inner = { "StandIns", nullptr, (EPropertyFlags)0x0004000000000000, UE4CodeGen_Private::EPropertyGenFlags::WeakObject, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UClass_UObject_NoRegister, METADATA_PARAMS(nullptr, 0) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AsfStandInTrackerActor_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AsfStandInTrackerActor_Statics::NewProp_StandIns,
@@ -93,7 +93,7 @@ void EmptyLinkFunctionForGeneratedCodesfStandInTrackerActor() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AsfStandInTrackerActor, 1812132275);
+	IMPLEMENT_CLASS(AsfStandInTrackerActor, 206411351);
 	template<> SCENEFUSION_API UClass* StaticClass<AsfStandInTrackerActor>()
 	{
 		return AsfStandInTrackerActor::StaticClass();

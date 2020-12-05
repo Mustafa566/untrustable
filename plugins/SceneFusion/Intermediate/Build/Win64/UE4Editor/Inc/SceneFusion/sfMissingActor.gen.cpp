@@ -1,4 +1,4 @@
-// Copyright 1998-2019 Epic Games, Inc. All Rights Reserved.
+// Copyright Epic Games, Inc. All Rights Reserved.
 /*===========================================================================
 	Generated code exported from UnrealHeaderTool.
 	DO NOT modify this manually! Edit the corresponding .h files instead!
@@ -86,7 +86,7 @@ void EmptyLinkFunctionForGeneratedCodesfMissingActor() {}
 		{ "ModuleRelativePath", "Public/Actors/sfMissingActor.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FMapPropertyParams Z_Construct_UClass_AsfMissingActor_Statics::NewProp_ReferenceMap = { "ReferenceMap", nullptr, (EPropertyFlags)0x0010000000000000, UE4CodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AsfMissingActor, ReferenceMap), METADATA_PARAMS(Z_Construct_UClass_AsfMissingActor_Statics::NewProp_ReferenceMap_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AsfMissingActor_Statics::NewProp_ReferenceMap_MetaData)) };
+	const UE4CodeGen_Private::FMapPropertyParams Z_Construct_UClass_AsfMissingActor_Statics::NewProp_ReferenceMap = { "ReferenceMap", nullptr, (EPropertyFlags)0x0010000000000000, UE4CodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AsfMissingActor, ReferenceMap), EMapPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_AsfMissingActor_Statics::NewProp_ReferenceMap_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AsfMissingActor_Statics::NewProp_ReferenceMap_MetaData)) };
 	const UE4CodeGen_Private::FUInt32PropertyParams Z_Construct_UClass_AsfMissingActor_Statics::NewProp_ReferenceMap_Key_KeyProp = { "ReferenceMap_Key", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::UInt32, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, METADATA_PARAMS(nullptr, 0) };
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AsfMissingActor_Statics::NewProp_ReferenceMap_ValueProp = { "ReferenceMap", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, 1, Z_Construct_UClass_UObject_NoRegister, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
@@ -94,7 +94,7 @@ void EmptyLinkFunctionForGeneratedCodesfMissingActor() {}
 		{ "ModuleRelativePath", "Public/Actors/sfMissingActor.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FMapPropertyParams Z_Construct_UClass_AsfMissingActor_Statics::NewProp_SerializedData = { "SerializedData", nullptr, (EPropertyFlags)0x0010000000000000, UE4CodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AsfMissingActor, SerializedData), METADATA_PARAMS(Z_Construct_UClass_AsfMissingActor_Statics::NewProp_SerializedData_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AsfMissingActor_Statics::NewProp_SerializedData_MetaData)) };
+	const UE4CodeGen_Private::FMapPropertyParams Z_Construct_UClass_AsfMissingActor_Statics::NewProp_SerializedData = { "SerializedData", nullptr, (EPropertyFlags)0x0010000000000000, UE4CodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AsfMissingActor, SerializedData), EMapPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_AsfMissingActor_Statics::NewProp_SerializedData_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AsfMissingActor_Statics::NewProp_SerializedData_MetaData)) };
 	const UE4CodeGen_Private::FNamePropertyParams Z_Construct_UClass_AsfMissingActor_Statics::NewProp_SerializedData_Key_KeyProp = { "SerializedData_Key", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, METADATA_PARAMS(nullptr, 0) };
 	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UClass_AsfMissingActor_Statics::NewProp_SerializedData_ValueProp = { "SerializedData", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, 1, Z_Construct_UScriptStruct_FsfByteArray, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
@@ -105,7 +105,7 @@ void EmptyLinkFunctionForGeneratedCodesfMissingActor() {}
 		{ "ToolTip", "Components with the flag RF_DefaultSubObject will not save properly, clear the flag and store the components\nthat should have it." },
 	};
 #endif
-	const UE4CodeGen_Private::FArrayPropertyParams Z_Construct_UClass_AsfMissingActor_Statics::NewProp_DefaultSubComponents = { "DefaultSubComponents", nullptr, (EPropertyFlags)0x0010008000000008, UE4CodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AsfMissingActor, DefaultSubComponents), METADATA_PARAMS(Z_Construct_UClass_AsfMissingActor_Statics::NewProp_DefaultSubComponents_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AsfMissingActor_Statics::NewProp_DefaultSubComponents_MetaData)) };
+	const UE4CodeGen_Private::FArrayPropertyParams Z_Construct_UClass_AsfMissingActor_Statics::NewProp_DefaultSubComponents = { "DefaultSubComponents", nullptr, (EPropertyFlags)0x0010008000000008, UE4CodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AsfMissingActor, DefaultSubComponents), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_AsfMissingActor_Statics::NewProp_DefaultSubComponents_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AsfMissingActor_Statics::NewProp_DefaultSubComponents_MetaData)) };
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AsfMissingActor_Statics::NewProp_DefaultSubComponents_Inner = { "DefaultSubComponents", nullptr, (EPropertyFlags)0x0000000000080008, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UClass_UActorComponent_NoRegister, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AsfMissingActor_Statics::NewProp_ComponentCreationMethods_MetaData[] = {
@@ -114,7 +114,7 @@ void EmptyLinkFunctionForGeneratedCodesfMissingActor() {}
 		{ "ToolTip", "We have to set component creation method to instance or components will not save properly, so we store the real\ncreation method in this map." },
 	};
 #endif
-	const UE4CodeGen_Private::FMapPropertyParams Z_Construct_UClass_AsfMissingActor_Statics::NewProp_ComponentCreationMethods = { "ComponentCreationMethods", nullptr, (EPropertyFlags)0x0010008000000000, UE4CodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AsfMissingActor, ComponentCreationMethods), METADATA_PARAMS(Z_Construct_UClass_AsfMissingActor_Statics::NewProp_ComponentCreationMethods_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AsfMissingActor_Statics::NewProp_ComponentCreationMethods_MetaData)) };
+	const UE4CodeGen_Private::FMapPropertyParams Z_Construct_UClass_AsfMissingActor_Statics::NewProp_ComponentCreationMethods = { "ComponentCreationMethods", nullptr, (EPropertyFlags)0x0010008000000000, UE4CodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AsfMissingActor, ComponentCreationMethods), EMapPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_AsfMissingActor_Statics::NewProp_ComponentCreationMethods_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AsfMissingActor_Statics::NewProp_ComponentCreationMethods_MetaData)) };
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AsfMissingActor_Statics::NewProp_ComponentCreationMethods_Key_KeyProp = { "ComponentCreationMethods_Key", nullptr, (EPropertyFlags)0x0000000000080000, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UClass_UActorComponent_NoRegister, METADATA_PARAMS(nullptr, 0) };
 	const UE4CodeGen_Private::FEnumPropertyParams Z_Construct_UClass_AsfMissingActor_Statics::NewProp_ComponentCreationMethods_ValueProp = { "ComponentCreationMethods", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, 1, Z_Construct_UEnum_Engine_EComponentCreationMethod, METADATA_PARAMS(nullptr, 0) };
 	const UE4CodeGen_Private::FBytePropertyParams Z_Construct_UClass_AsfMissingActor_Statics::NewProp_ComponentCreationMethods_ValueProp_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
@@ -172,7 +172,7 @@ void EmptyLinkFunctionForGeneratedCodesfMissingActor() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AsfMissingActor, 154552025);
+	IMPLEMENT_CLASS(AsfMissingActor, 3149414919);
 	template<> SCENEFUSION_API UClass* StaticClass<AsfMissingActor>()
 	{
 		return AsfMissingActor::StaticClass();

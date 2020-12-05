@@ -1,4 +1,4 @@
-// Copyright 1998-2019 Epic Games, Inc. All Rights Reserved.
+// Copyright Epic Games, Inc. All Rights Reserved.
 /*===========================================================================
 	Generated code exported from UnrealHeaderTool.
 	DO NOT modify this manually! Edit the corresponding .h files instead!
@@ -76,7 +76,7 @@ void EmptyLinkFunctionForGeneratedCodesfLockComponent() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UsfLockComponent, 1121716769);
+	IMPLEMENT_CLASS(UsfLockComponent, 879930894);
 	template<> SCENEFUSION_API UClass* StaticClass<UsfLockComponent>()
 	{
 		return UsfLockComponent::StaticClass();

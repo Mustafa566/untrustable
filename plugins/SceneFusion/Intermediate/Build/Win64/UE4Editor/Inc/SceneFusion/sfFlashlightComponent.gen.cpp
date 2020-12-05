@@ -1,4 +1,4 @@
-// Copyright 1998-2019 Epic Games, Inc. All Rights Reserved.
+// Copyright Epic Games, Inc. All Rights Reserved.
 /*===========================================================================
 	Generated code exported from UnrealHeaderTool.
 	DO NOT modify this manually! Edit the corresponding .h files instead!
@@ -74,7 +74,7 @@ void EmptyLinkFunctionForGeneratedCodesfFlashlightComponent() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UsfFlashlightComponent, 3898441660);
+	IMPLEMENT_CLASS(UsfFlashlightComponent, 3144179510);
 	template<> SCENEFUSION_API UClass* StaticClass<UsfFlashlightComponent>()
 	{
 		return UsfFlashlightComponent::StaticClass();

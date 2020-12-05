@@ -1,4 +1,4 @@
-// Copyright 1998-2019 Epic Games, Inc. All Rights Reserved.
+// Copyright Epic Games, Inc. All Rights Reserved.
 /*===========================================================================
 	Generated code exported from UnrealHeaderTool.
 	DO NOT modify this manually! Edit the corresponding .h files instead!
@@ -76,7 +76,7 @@ void EmptyLinkFunctionForGeneratedCodesfDecalActor() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AsfDecalActor, 1556757520);
+	IMPLEMENT_CLASS(AsfDecalActor, 2494357128);
 	template<> SCENEFUSION_API UClass* StaticClass<AsfDecalActor>()
 	{
 		return AsfDecalActor::StaticClass();
