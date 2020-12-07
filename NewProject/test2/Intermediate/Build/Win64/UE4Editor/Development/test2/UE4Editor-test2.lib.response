@@ -1,0 +1,16 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UE4Editor-test2.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"Z:\Untrustable\untrustables\NewProject\test2\Intermediate\Build\Win64\test2Editor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.obj"
+"Z:\Untrustable\untrustables\NewProject\test2\Intermediate\Build\Win64\UE4Editor\Development\test2\test2.cpp.obj"
+"Z:\Untrustable\untrustables\NewProject\test2\Intermediate\Build\Win64\UE4Editor\Development\test2\test2GameModeBase.cpp.obj"
+"Z:\Untrustable\untrustables\NewProject\test2\Intermediate\Build\Win64\UE4Editor\Development\test2\test2.init.gen.cpp.obj"
+"Z:\Untrustable\untrustables\NewProject\test2\Intermediate\Build\Win64\UE4Editor\Development\test2\test2GameModeBase.gen.cpp.obj"
+"Z:\Untrustable\untrustables\NewProject\test2\Intermediate\Build\Win64\UE4Editor\Development\test2\Default.rc2.res"
+/OUT:"Z:\Untrustable\untrustables\NewProject\test2\Intermediate\Build\Win64\UE4Editor\Development\test2\UE4Editor-test2.lib"
+/INCLUDE:IMPLEMENT_MODULE_test2

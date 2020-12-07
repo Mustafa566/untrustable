@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "test2",
+			"Path": "Z:\\Untrustable\\untrustables\\NewProject\\test2\\Source\\test2.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "test2Editor",
+			"Path": "Z:\\Untrustable\\untrustables\\NewProject\\test2\\Source\\test2Editor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
