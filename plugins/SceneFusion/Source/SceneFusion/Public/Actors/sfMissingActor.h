@@ -33,7 +33,7 @@ class AsfMissingActor : public AActor, public IsfMissingObject
 	
 public:	
     // Name of the missing actor class
-    UPROPERTY(VisibleAnywhere)
+    UPROPERTY(VisibleAnywhere, Category = "Scene Fusion")
     FString ClassName;
 
     // We have to set component creation method to instance or components will not save properly, so we store the real

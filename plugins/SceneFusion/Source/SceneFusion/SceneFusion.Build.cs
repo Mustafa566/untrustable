@@ -34,7 +34,7 @@ public class SceneFusion : ModuleRules
 #endif
 
         // Include SceneFusionAPI files
-        string path = Path.GetFullPath(Path.Combine(ModuleDirectory, "../../ThirdParty/SceneFusionAPI"));
+        string path = Path.GetFullPath(Path.Combine(ModuleDirectory, "../ThirdParty/SceneFusionAPI"));
         PublicAdditionalLibraries.AddRange(new string[] {
             Path.Combine(path, "Libraries/SceneFusionAPI.lib"),
             Path.Combine(path, "Libraries/KSCommon.lib"),

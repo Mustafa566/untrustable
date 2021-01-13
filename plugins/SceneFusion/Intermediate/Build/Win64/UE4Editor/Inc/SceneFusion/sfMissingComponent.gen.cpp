@@ -87,7 +87,7 @@ void EmptyLinkFunctionForGeneratedCodesfMissingComponent() {}
 	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UClass_UsfMissingComponent_Statics::NewProp_SerializedData_ValueProp = { "SerializedData", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, 1, Z_Construct_UScriptStruct_FsfByteArray, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UsfMissingComponent_Statics::NewProp_ClassName_MetaData[] = {
-		{ "Category", "sfMissingComponent" },
+		{ "Category", "Scene Fusion" },
 		{ "Comment", "// Name of the missing component class\n" },
 		{ "ModuleRelativePath", "Public/Components/sfMissingComponent.h" },
 		{ "ToolTip", "Name of the missing component class" },
@@ -133,7 +133,7 @@ void EmptyLinkFunctionForGeneratedCodesfMissingComponent() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UsfMissingComponent, 2832638828);
+	IMPLEMENT_CLASS(UsfMissingComponent, 26909079);
 	template<> SCENEFUSION_API UClass* StaticClass<UsfMissingComponent>()
 	{
 		return UsfMissingComponent::StaticClass();

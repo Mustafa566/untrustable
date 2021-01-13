@@ -74,6 +74,9 @@ public:
     static const sfName Pins;
     static const sfName Direction;
     static const sfName LinkedTo;
+    static const sfName DefaultValue;
+    static const sfName DefaultObject;
+    static const sfName DefaultText;
 };
 
 /**

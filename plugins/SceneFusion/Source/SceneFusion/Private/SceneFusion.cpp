@@ -185,10 +185,10 @@ void SceneFusion::OnConnect()
     // Move our editor mode to the first position in the modes array so it processes events first
     if (hackPtr->GetModes().Num() > 1)
     {
-        TSharedPtr<FEdMode> modePtr = hackPtr->GetModes().Pop();
+        auto modePtr = hackPtr->GetModes().Pop();
         hackPtr->GetModes().Insert(modePtr, 0);
 
-        for (TSharedPtr<FEdMode> iter : hackPtr->GetModes())
+        for (auto iter : hackPtr->GetModes())
         {
             KS::Log::Info("mode: " + std::string(TCHAR_TO_UTF8(*iter->GetID().ToString())));
         }
@@ -303,7 +303,7 @@ bool SceneFusion::Tick(float deltaTime)
         // If we do this in the StartupModule function, this tab will be behind the main window.
         if (sfConfig::Get().ShowGettingStartedScreen)
         {
-            FGlobalTabmanager::Get()->InvokeTab(FName("SF Getting Started"));
+            sfUnrealUtils::InvokeTab(FName("SF Getting Started"));
         }
     }
     return true;

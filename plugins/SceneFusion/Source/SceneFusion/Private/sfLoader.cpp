@@ -47,6 +47,7 @@ sfLoader::sfLoader() :
     m_classToStandInPath.Add(USkeletalMesh::StaticClass(), "/SceneFusion/StandIns/Skeletal");
     m_classToStandInPath.Add(UMaterial::StaticClass(), "/SceneFusion/StandIns/Material");
     m_classToStandInPath.Add(UTexture::StaticClass(), "/SceneFusion/StandIns/Question");
+    m_classToStandInPath.Add(UParticleSystem::StaticClass(), "/SceneFusion/StandIns/particleSystem");
     m_classToStandInPath.Add(UPaperSprite::StaticClass(), "/SceneFusion/StandIns/Sprite");
     m_classToStandInPath.Add(UTextureCube::StaticClass(), "/Engine/EngineMaterials/DefaultCubemap");
 
@@ -171,7 +172,11 @@ UObject* sfLoader::Load(const FString& path, const FString& className, sfObject:
         KS::Log::Info(TCHAR_TO_UTF8(*("Creating " + className + " asset at '" + path + "'.")), LOG_CHANNEL);
         FString packageName;
         path.Split(".", &packageName, &name);
+#if ENGINE_MAJOR_VERSION >= 4 && ENGINE_MINOR_VERSION >= 26
+        UPackage* packagePtr = CreatePackage(*packageName);
+#else
         UPackage* packagePtr = CreatePackage(nullptr, *packageName);
+#endif
         if (packagePtr != nullptr)
         {
             assetPtr = NewObject<UObject>(packagePtr, classPtr, *name, RF_Public | RF_Transactional);

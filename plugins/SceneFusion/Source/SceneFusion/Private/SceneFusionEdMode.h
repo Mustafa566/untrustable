@@ -253,6 +253,15 @@ private:
 class sfEditorModeToolsHack : public FEditorModeTools
 {
 public:
+#if ENGINE_MAJOR_VERSION >= 4 && ENGINE_MINOR_VERSION >= 26
+    /**
+     * @return  TArray<UEdMode*>& the array of active editor modes.
+     */
+    TArray<UEdMode*>& GetModes()
+    {
+        return ActiveScriptableModes;
+    }
+#else
     /**
      * @return  TArray<TSharedPtr<FEdMode>>& the array of active editor modes.
      */
@@ -264,19 +273,17 @@ public:
         return Modes;
 #endif
     }
+#endif
 };
 
 /**
- * Part of a hack to prevents other editor modes from processing an event. We replace the other editor modes in the
+ * Part of a hack to prevent other editor modes from processing an event. We replace the other editor modes in the
  * protected Modes array we exposed with a dummy editor mode, and when the dummy editor mode processes an event,
  * it replaces itself with the mode that used to be there.
  */
-class sfDummyEdMode : public FEdMode
+class FsfDummyEdMode : public FEdMode
 {
 public:
-    /**
-     * Array of modes we replaced with the dummy.
-     */
     TArray<TSharedPtr<FEdMode>> Modes;
 
     /**

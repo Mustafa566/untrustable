@@ -228,7 +228,7 @@ void sfWebService::DownloadLANServer(
     //UE_LOG(LogSceneFusion, Log, TEXT("URL: %s\n%s"), *url, *jsonString);
 
     // HTTPS Post Request
-    TSharedRef<IHttpRequest> request = FHttpModule::Get().CreateRequest();
+    auto request = FHttpModule::Get().CreateRequest();
     request->SetURL(settings.ServiceURL / "v1/downloadLANServer");
     request->SetVerb("POST");
     request->SetHeader(TEXT("User-Agent"), TEXT("X-UnrealEngine-Agent"));
@@ -329,7 +329,7 @@ void sfWebService::Send(
     //UE_LOG(LogSceneFusion, Log, TEXT("URL: %s\n%s"), *url, *jsonString);
 
     // HTTPS Post Request
-    TSharedRef<IHttpRequest> request = FHttpModule::Get().CreateRequest();
+    auto request = FHttpModule::Get().CreateRequest();
     request->SetURL(url);
     request->SetVerb(verb);
     request->SetHeader(TEXT("User-Agent"), TEXT("X-UnrealEngine-Agent"));

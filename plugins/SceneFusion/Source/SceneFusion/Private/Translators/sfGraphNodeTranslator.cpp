@@ -10,6 +10,7 @@
 #include "../../Public/Objects/sfReferenceTracker.h"
 #include "../../Public/sfConfig.h"
 #include "../../Public/sfMissingObjectManager.h"
+#include "../../Public/sfLoader.h"
 #include "../Translators/sfUObjectTranslator.h"
 
 #include <Kismet2/BlueprintEditorUtils.h>
@@ -147,6 +148,24 @@ sfDictionaryProperty::SPtr sfGraphNodeTranslator::CreatePropertyForPin(UEdGraphP
 {
     sfDictionaryProperty::SPtr pinProperties = sfDictionaryProperty::Create();
 
+    // Default value
+    if (!pinPtr->DefaultValue.IsEmpty())
+    {
+        pinProperties->Set(sfProp::DefaultValue, sfPropertyUtil::FromString(pinPtr->DefaultValue));
+    }
+
+    // Default object
+    if (pinPtr->DefaultObject != nullptr)
+    {
+        pinProperties->Set(sfProp::DefaultObject, CreatePropertyForPinDefaultObject(pinPtr));
+    }
+
+    // Default text
+    if (!pinPtr->DefaultTextValue.IsEmpty())
+    {
+        pinProperties->Set(sfProp::DefaultText, sfPropertyUtil::FromText(pinPtr->DefaultTextValue));
+    }
+
     // Direction
     pinProperties->Set(sfProp::Direction, sfValueProperty::Create((uint8_t)pinPtr->Direction));
 
@@ -154,6 +173,23 @@ sfDictionaryProperty::SPtr sfGraphNodeTranslator::CreatePropertyForPin(UEdGraphP
     pinProperties->Set(sfProp::LinkedTo, CreateLinkedToProperties(pinPtr));
 
     return pinProperties;
+}
+
+sfProperty::SPtr sfGraphNodeTranslator::CreatePropertyForPinDefaultObject(UEdGraphPin* pinPtr)
+{
+    UClass* classPtr = Cast<UClass>(pinPtr->DefaultObject);
+    if (classPtr != nullptr)
+    {
+        return sfPropertyManager::Get().CreatePropertyForClassReference(classPtr);
+    }
+    else
+    {
+        return sfPropertyManager::Get().CreatePropertyForObjectReference(pinPtr->DefaultObject,
+            [pinPtr](UObject* uobjPtr)
+        {
+            pinPtr->DefaultObject = uobjPtr;
+        });
+    }
 }
 
 sfListProperty::SPtr sfGraphNodeTranslator::CreateLinkedToProperties(UEdGraphPin* pinPtr)
@@ -417,6 +453,26 @@ void sfGraphNodeTranslator::InitializePin(
             (*iter)->NodeConnectionListChanged();
         }
     }
+
+    // Default value
+    if (pinProperties->TryGet(sfProp::DefaultValue, propPtr))
+    {
+        pinPtr->DefaultValue = sfPropertyUtil::ToString(propPtr);
+        pinPtr->DefaultObject = nullptr;
+        pinPtr->DefaultTextValue = FText::GetEmpty();
+    }
+    if (pinProperties->TryGet(sfProp::DefaultObject, propPtr))
+    {
+        pinPtr->DefaultValue.Empty();
+        pinPtr->DefaultObject = GetDefaultObjectFromProperty(propPtr);
+        pinPtr->DefaultTextValue = FText::GetEmpty();
+    }
+    if (pinProperties->TryGet(sfProp::DefaultText, propPtr))
+    {
+        pinPtr->DefaultValue.Empty();
+        pinPtr->DefaultObject = nullptr;
+        pinPtr->DefaultTextValue = sfPropertyUtil::ToText(propPtr);
+    }
 }
 
 UEdGraphNode* sfGraphNodeTranslator::SetLink(sfProperty::SPtr toPinPropPtr, UEdGraphPin* pinPtr, bool notifyChange)
@@ -559,7 +615,7 @@ void sfGraphNodeTranslator::SendChanges(UEdGraph* graphPtr, sfObject::SPtr graph
 
 void sfGraphNodeTranslator::SendLinkChange(UEdGraphNode* nodePtr, sfObject::SPtr objPtr)
 {
-    // Send pin link change
+    // Send pin link and pin default value change
     sfDictionaryProperty::SPtr propertiesPtr = objPtr->Property()->AsDict();
     if (nodePtr->Pins.Num() == 0)
     {
@@ -602,16 +658,83 @@ void sfGraphNodeTranslator::SendLinkChange(UEdGraphNode* nodePtr, sfObject::SPtr
         }
 
         sfPropertyManager::Get().CopyList(linkedToPropPtr, CreateLinkedToProperties(pinPtr));
+
+        sfProperty::SPtr defaultValueProp;
+        // Send default value change
+        FString defaultValue;
+        if (pinProperties->TryGet(sfProp::DefaultValue, defaultValueProp))
+        {
+            defaultValue = sfPropertyUtil::ToString(defaultValueProp);
+        }
+        if (defaultValue != pinPtr->DefaultValue)
+        {
+            pinProperties->Set(sfProp::DefaultValue, sfPropertyUtil::FromString(pinPtr->DefaultValue));
+        }
+
+        // Send default object change
+        if (pinPtr->DefaultObject == nullptr)
+        {
+            pinProperties->Remove(sfProp::DefaultObject);
+        }
+        else
+        {
+            sfProperty::SPtr currentProp = CreatePropertyForPinDefaultObject(pinPtr);
+            if (!pinProperties->TryGet(sfProp::DefaultObject, defaultValueProp) ||
+                !currentProp->Equals(defaultValueProp))
+            {
+                pinProperties->Set(sfProp::DefaultObject, currentProp);
+            }
+        }
+
+        // Send default text change
+        FText defaultTextValue;
+        if (pinProperties->TryGet(sfProp::DefaultText, defaultValueProp))
+        {
+            defaultTextValue = sfPropertyUtil::ToText(defaultValueProp);
+        }
+        if (!defaultTextValue.EqualTo(pinPtr->DefaultTextValue))
+        {
+            pinProperties->Set(sfProp::DefaultText, sfPropertyUtil::FromText(pinPtr->DefaultTextValue));
+        }
     }
 }
 
 void sfGraphNodeTranslator::OnPropertyChange(sfProperty::SPtr propertyPtr)
 {
-    std::string propertyPath = propertyPtr->GetPath();
-    std::string pinsPropertyPath(*sfProp::Pins + ".");
-    if (propertyPath.compare(0, pinsPropertyPath.length(), pinsPropertyPath) == 0)
+    sfName key = propertyPtr->Key();
+    if (key == sfProp::LinkedTo || key == sfProp::Direction)
     {
         SetLink(propertyPtr, GetPinForLinkProperty(propertyPtr), true);
+    }
+    else if (key == sfProp::DefaultValue)
+    {
+        UEdGraphPin* pinPtr = FindPinFromProperty(propertyPtr->GetParentProperty());
+        if (pinPtr != nullptr)
+        {
+            pinPtr->DefaultValue = sfPropertyUtil::ToString(propertyPtr);
+            pinPtr->DefaultObject = nullptr;
+            pinPtr->DefaultTextValue = FText::GetEmpty();
+        }
+    }
+    else if (key == sfProp::DefaultObject)
+    {
+        UEdGraphPin* pinPtr = FindPinFromProperty(propertyPtr->GetParentProperty());
+        if (pinPtr != nullptr)
+        {
+            pinPtr->DefaultValue.Empty();
+            pinPtr->DefaultObject = GetDefaultObjectFromProperty(propertyPtr);
+            pinPtr->DefaultTextValue = FText::GetEmpty();
+        }
+    }
+    else if (key == sfProp::DefaultText)
+    {
+        UEdGraphPin* pinPtr = FindPinFromProperty(propertyPtr->GetParentProperty());
+        if (pinPtr != nullptr)
+        {
+            pinPtr->DefaultValue.Empty();
+            pinPtr->DefaultObject = nullptr;
+            pinPtr->DefaultTextValue = sfPropertyUtil::ToText(propertyPtr);
+        }
     }
     else
     {
@@ -619,6 +742,26 @@ void sfGraphNodeTranslator::OnPropertyChange(sfProperty::SPtr propertyPtr)
     }
     MarkBlueprintModified(propertyPtr);
 }
+
+void sfGraphNodeTranslator::OnRemoveField(sfDictionaryProperty::SPtr dictPtr, const sfName& name)
+{
+    if (name == sfProp::DefaultValue || name == sfProp::DefaultObject || name == sfProp::DefaultText)
+    {
+        UEdGraphPin* pinPtr = FindPinFromProperty(dictPtr);
+        if (pinPtr != nullptr)
+        {
+            pinPtr->DefaultValue.Empty();
+            pinPtr->DefaultObject = nullptr;
+            pinPtr->DefaultTextValue = FText::GetEmpty();
+        }
+    }
+    else
+    {
+        sfBaseUObjectTranslator::OnRemoveField(dictPtr, name);
+    }
+    MarkBlueprintModified(dictPtr);
+}
+
 
 void sfGraphNodeTranslator::OnListAdd(sfListProperty::SPtr listPtr, int index, int count)
 {
@@ -693,6 +836,50 @@ void sfGraphNodeTranslator::MarkBlueprintModified(sfProperty::SPtr propertyPtr)
         UBlueprint* ownerBlueprintPtr = nodePtr->GetBlueprint();
         FBlueprintEditorUtils::MarkBlueprintAsStructurallyModified(ownerBlueprintPtr);
     }
+}
+
+UObject* sfGraphNodeTranslator::GetDefaultObjectFromProperty(sfProperty::SPtr defaultObjectProp)
+{
+    UObject* referencePtr = nullptr;
+    sfProperty::Types type = defaultObjectProp->Type();
+    if (type == sfProperty::REFERENCE)
+    {
+        referencePtr = sfObjectMap::GetUObject(defaultObjectProp->AsReference()->GetObjectId());
+    }
+    else if (type == sfProperty::STRING)
+    {
+        FString str = sfPropertyUtil::ToString(defaultObjectProp);
+        UClass* classPtr = sfUnrealUtils::LoadClass(str, true);
+        if (!str.IsEmpty())
+        {
+            if (classPtr != nullptr)
+            {
+                referencePtr = classPtr;
+            }
+            else
+            {
+                // Try to load asset
+                FString path, className;
+                if (str.Split(";", &className, &path))
+                {
+                    referencePtr = sfLoader::Get().LoadFromCache(
+                        path, className, defaultObjectProp->GetContainerObject());
+                    if (referencePtr == nullptr)
+                    {
+                        referencePtr = sfLoader::Get().Load(path, className, defaultObjectProp->GetContainerObject());
+                    }
+                }
+            }
+        }
+    }
+    return referencePtr;
+}
+
+UEdGraphPin* sfGraphNodeTranslator::FindPinFromProperty(sfProperty::SPtr pinProperty)
+{
+    UEdGraphNode* nodePtr = Cast<UEdGraphNode>(sfObjectMap::GetUObject(pinProperty->GetContainerObject()));
+    FString pinName = pinProperty->Key()->c_str();
+    return nodePtr->FindPin(pinName);
 }
 
 #undef LOG_CHANNEL

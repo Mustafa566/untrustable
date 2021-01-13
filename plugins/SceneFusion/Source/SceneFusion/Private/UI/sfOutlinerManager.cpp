@@ -75,7 +75,11 @@ void sfOutlinerManager::ReconstructWorldOutliner()
             FTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateLambda([this](float delta) {
                 if (m_tabManager.IsValid())
                 {
+#if ENGINE_MAJOR_VERSION >= 4 && ENGINE_MINOR_VERSION >= 26
+                    m_tabManager->TryInvokeTab(FName(WORLD_OUTLINER));
+#else
                     m_tabManager->InvokeTab(FName(WORLD_OUTLINER));
+#endif
                 }
                 return false;
             }));

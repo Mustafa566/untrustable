@@ -1,4 +1,5 @@
 #include "SceneFusionEdMode.h"
+#include "sfDummyEdMode.h"
 #include "../Public/sfObjectMap.h"
 #include <Log.h>
 #include <LevelEditor.h>
@@ -84,9 +85,28 @@ void SceneFusionEdMode::StopEvent()
 {
     // Reinterpret to our hack class to expose the protected array of active editor modes.
     sfEditorModeToolsHack* hackPtr = static_cast<sfEditorModeToolsHack*>(&GLevelEditorModeTools());
+    if (hackPtr->GetModes().Num() == 0)
+    {
+        return;
+    }
+
     // Create the dummy editor mode that will replace all editor modes after this one in the active editor modes array,
     // so our dummy mode receives events instead of the real modes.
-    TSharedPtr<sfDummyEdMode> dummyPtr = MakeShareable<sfDummyEdMode>(new sfDummyEdMode());
+#if ENGINE_MAJOR_VERSION >= 4 && ENGINE_MINOR_VERSION >= 26
+    UsfDummyEdMode* dummyPtr = NewObject<UsfDummyEdMode>(GetTransientPackage());
+    dummyPtr->SetOwner(&GLevelEditorModeTools());
+    for (int i = hackPtr->GetModes().Num() - 1; i >= 0; i--)
+    {
+        if (hackPtr->GetModes()[i]->GetID() == GetID())
+        {
+            break;
+        }
+        // Add the real mode to the dummy's modes array, so it can be restored when the dummy processes the event.
+        dummyPtr->Modes.Add(hackPtr->GetModes()[i]);
+        hackPtr->GetModes()[i] = dummyPtr;
+}
+#else
+    TSharedPtr<FsfDummyEdMode> dummyPtr = MakeShareable<FsfDummyEdMode>(new FsfDummyEdMode());
     for (int i = hackPtr->GetModes().Num() - 1; i >= 0; i--)
     {
         if (hackPtr->GetModes()[i].Get() == this)
@@ -97,10 +117,12 @@ void SceneFusionEdMode::StopEvent()
         dummyPtr->Modes.Add(hackPtr->GetModes()[i]);
         hackPtr->GetModes()[i] = dummyPtr;
     }
+#endif
 }
 
-void sfDummyEdMode::RestoreMode()
+void FsfDummyEdMode::RestoreMode()
 {
+#if ENGINE_MAJOR_VERSION < 4 || ENGINE_MINOR_VERSION < 26
     // This is called when the dummy editor mode receives an event. Now that we've blocked the real mode from receiving
     // the event, we replace the dummy with the real mode.
     if (Modes.Num() <= 0)
@@ -117,4 +139,5 @@ void sfDummyEdMode::RestoreMode()
         // Replace the dummy mode with the real mode, and remove the real mode from our Modes array.
         hackPtr->GetModes()[index] = Modes.Pop();
     }
+#endif
 }

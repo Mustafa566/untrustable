@@ -58,6 +58,13 @@ public:
     typedef std::function<void(UObject* uobjPtr, UnrealProperty* upropPtr)> PropertyChangeHandler;
 
     /**
+     * Callback to set reference to the given UObject.
+     *
+     * @param   UObject* reference
+     */
+    typedef std::function<void(UObject*)> SetReferenceCallback;
+
+    /**
      * On get asset property event.
      *
      * @param   UObject* assetPtr
@@ -829,6 +836,15 @@ private:
         UObject* referencePtr);
 
     /**
+     * Creates property for the given object reference.
+     *
+     * @param   UObject* referencePtr
+     * @param   SetReferenceCallback setReference callback
+     * @return  sfProperty::SPtr
+     */
+    sfProperty::SPtr CreatePropertyForObjectReference(UObject* referencePtr, SetReferenceCallback setReference);
+
+    /**
      * Gets the uobject referenced by a reference property.
      *
      * @param   sfReferenceProperty::SPtr propPtr to get referenced uobject for.
@@ -852,6 +868,14 @@ private:
      * @return  sfProperty::SPtr
      */
     sfProperty::SPtr GetClass(const sfUPropertyInstance& upropInstance);
+
+    /**
+     * Creates property for the given class reference.
+     *
+     * @param   UClass* classPtr to create sfProperty from.
+     * @return  sfProperty::SPtr
+     */
+    sfProperty::SPtr CreatePropertyForClassReference(UClass* classPtr);
 
     /**
      * Sets a class property value using reflection.

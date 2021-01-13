@@ -89,7 +89,7 @@ void EmptyLinkFunctionForGeneratedCodesfBadNode() {}
 	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UClass_UsfBadNode_Statics::NewProp_SerializedData_ValueProp = { "SerializedData", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, 1, Z_Construct_UScriptStruct_FsfByteArray, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UsfBadNode_Statics::NewProp_MissingClassName_MetaData[] = {
-		{ "Category", "sfBadNode" },
+		{ "Category", "Scene Fusion" },
 		{ "ModuleRelativePath", "Private/Objects/sfBadNode.h" },
 	};
 #endif
@@ -140,7 +140,7 @@ void EmptyLinkFunctionForGeneratedCodesfBadNode() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UsfBadNode, 3737873834);
+	IMPLEMENT_CLASS(UsfBadNode, 1865369304);
 	template<> SCENEFUSION_API UClass* StaticClass<UsfBadNode>()
 	{
 		return UsfBadNode::StaticClass();

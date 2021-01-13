@@ -118,22 +118,22 @@ void sfUI::InitializeCommands()
     // Map Scene Fusion actions to UI commands
     m_UICommandListPtr->MapAction(
         sfUICommands::Get().ToolBarClickPtr,
-        FExecuteAction::CreateLambda([this]() { FGlobalTabmanager::Get()->InvokeTab(SceneFusionTabName); }),
+        FExecuteAction::CreateLambda([this]() { sfUnrealUtils::InvokeTab(SceneFusionTabName); }),
         FCanExecuteAction()
     );
     m_UICommandListPtr->MapAction(
         sfUICommands::Get().MissingAssetsPtr,
-        FExecuteAction::CreateLambda([this]() { FGlobalTabmanager::Get()->InvokeTab(MissingAssetsTabName); }),
+        FExecuteAction::CreateLambda([this]() { sfUnrealUtils::InvokeTab(MissingAssetsTabName); }),
         FCanExecuteAction()
     );
     m_UICommandListPtr->MapAction(
         sfUICommands::Get().GettingStartedPtr,
-        FExecuteAction::CreateLambda([this]() { FGlobalTabmanager::Get()->InvokeTab(GettingStartedTabName); }),
+        FExecuteAction::CreateLambda([this]() { sfUnrealUtils::InvokeTab(GettingStartedTabName); }),
         FCanExecuteAction()
     );
     m_UICommandListPtr->MapAction(
         sfUICommands::Get().ExperimentalFeaturesPtr,
-        FExecuteAction::CreateLambda([this]() { FGlobalTabmanager::Get()->InvokeTab(ExperimentalFeaturesTabName); }),
+        FExecuteAction::CreateLambda([this]() { sfUnrealUtils::InvokeTab(ExperimentalFeaturesTabName); }),
         FCanExecuteAction()
     );
 
@@ -438,7 +438,7 @@ void sfUI::RefreshMissingAssetsWarning()
         m_onlinePanel.MissingAssetMessage()->SetMessage(str, sfUIMessageBox::Icon::WARNING, 
             sfUIMessageBox::OnClickDelegate::CreateLambda([this]()
         {
-            FGlobalTabmanager::Get()->InvokeTab(MissingAssetsTabName);
+            sfUnrealUtils::InvokeTab(MissingAssetsTabName);
         }));
     }
 }

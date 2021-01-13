@@ -1,6 +1,7 @@
 #include "sfGettingStartedPanel.h"
 #include "sfUIStyles.h"
 #include "../../Public/sfConfig.h"
+#include "../../Public/sfUnrealUtils.h"
 
 #include <Widgets/Layout/SScrollBox.h>
 #include <Widgets/Input/SHyperlink.h>
@@ -56,7 +57,7 @@ TSharedRef<SDockTab> sfGettingStartedPanel::CreateGettingStartedTab()
                     SNew(SButton)
                     .Text(FText::FromString("Open Scene Fusion Window"))
                     .OnClicked(FOnClicked::CreateLambda([]()->FReply {
-                            TSharedRef<SDockTab> tab = FGlobalTabmanager::Get()->InvokeTab(FName("Scene Fusion"));
+                            auto tab = sfUnrealUtils::InvokeTab(FName("Scene Fusion"));
                             tab->FlashTab();
                             return FReply::Handled();
                     }))

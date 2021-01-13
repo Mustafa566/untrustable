@@ -45,7 +45,7 @@ FArchive& sfBufferArchive::operator<<(UObject*& uobjPtr)
             *this << id;
         }
     }
-    else if (uobjPtr->GetOutermost() == GetTransientPackage() || uobjPtr->HasAllFlags(RF_Transient))
+    else if (uobjPtr->GetOutermost() == GetTransientPackage() || sfLoader::Get().IsStandIn(uobjPtr))
     {
         // This may be a stand-in for a missing asset
         FString path = sfLoader::Get().GetPathFromStandIn(uobjPtr);
@@ -144,7 +144,7 @@ FArchive& sfBufferReader::operator<<(UObject*& uobjPtr)
                 break;
             }
             uobjPtr = sfLoader::Get().Load(path, className, ContextPtr);
-            if (uobjPtr->HasAllFlags(RF_Transient))
+            if (sfLoader::Get().IsStandIn(uobjPtr))
             {
                 // This is a stand-in for a missing asset
                 m_missingPathIds.Add(pathId);

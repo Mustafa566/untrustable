@@ -61,7 +61,7 @@ public:
     UPROPERTY()
     FString NodeTypeName;
 
-    UPROPERTY(VisibleAnywhere)
+    UPROPERTY(VisibleAnywhere, Category = "Scene Fusion")
     FString MissingClassName;
 
     UPROPERTY()

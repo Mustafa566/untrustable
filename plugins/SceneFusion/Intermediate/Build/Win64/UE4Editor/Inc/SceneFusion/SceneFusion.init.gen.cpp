@@ -21,8 +21,8 @@ void EmptyLinkFunctionForGeneratedCodeSceneFusion_init() {}
 				nullptr,
 				0,
 				PKG_CompiledIn | 0x00000040,
-				0x8B3AA904,
-				0xFA36E15F,
+				0x192C3F7C,
+				0x6DDCE1A3,
 				METADATA_PARAMS(nullptr, 0)
 			};
 			UE4CodeGen_Private::ConstructUPackage(ReturnPackage, PackageParams);

@@ -2047,6 +2047,80 @@ sfProperty::SPtr sfPropertyManager::CreatePropertyForObjectReference(
     return sfPropertyUtil::FromString(str);
 }
 
+sfProperty::SPtr sfPropertyManager::CreatePropertyForObjectReference(
+    UObject* referencePtr,
+    SetReferenceCallback setReference)
+{
+    bool isStandIn = sfLoader::Get().IsStandIn(referencePtr);
+    if (!isStandIn &&
+        (referencePtr->GetTypedOuter<ULevel>() != nullptr || referencePtr->GetTypedOuter<UBlueprint>() != nullptr))
+    {
+        // The object is in the level or a blueprint. Sync the object if it's not already synced.
+        sfObject::SPtr objPtr = sfObjectMap::GetSFObject(referencePtr);
+        if (objPtr == nullptr)
+        {
+            objPtr = SceneFusion::ObjectEventDispatcher->Create(referencePtr);
+            if (objPtr == nullptr)
+            {
+                FString str = "Unable to sync reference to " + referencePtr->GetClass()->GetName() + " " +
+                    referencePtr->GetName();
+                KS::Log::Info(TCHAR_TO_UTF8(*str), LOG_CHANNEL);
+                // Empty string means keep your current value
+                return sfValueProperty::Create("");
+            }
+        }
+        else if (m_syncSubObjects && objPtr->Type() == sfType::UObject && m_syncedSubObjects.insert(objPtr).second)
+        {
+            // Unreal doesn't fire an event for the change on the sub object, so we have to check for changes
+            if (objPtr->IsLocked())
+            {
+                ApplyProperties(referencePtr, objPtr->Property()->AsDict());
+            }
+            else
+            {
+                SendPropertyChanges(referencePtr, objPtr->Property()->AsDict());
+            }
+        }
+        return sfReferenceProperty::Create(objPtr->Id());
+    }
+
+    // The object is an asset
+    FString str;
+    if (isStandIn)
+    {
+        // This is a stand-in for a missing asset.
+        str = sfLoader::Get().GetPathFromStandIn(referencePtr);
+        // Try to load the asset from memory
+        FString path, className;
+        if (str.Split(";", &className, &path))
+        {
+            UObject* assetPtr = sfLoader::Get().LoadFromCache(path, className, nullptr);
+            if (assetPtr != nullptr)
+            {
+                // Replace the stand-in with the correct asset
+                setReference(assetPtr);
+            }
+        }
+        else
+        {
+            KS::Log::Warning("Unable to sync reference to object " +
+                std::string(TCHAR_TO_UTF8(*referencePtr->GetName())), LOG_CHANNEL);
+        }
+    }
+    else
+    {
+        str = sfUnrealUtils::ClassToFString(referencePtr->GetClass()) + ";" + referencePtr->GetPathName();
+        m_onGetAssetProperty.Broadcast(referencePtr);
+
+        // Sync the asset if it can be synced and isn't already synced.
+        if (sfLoader::Get().IsCreatableAssetType(referencePtr->GetClass()) && !sfObjectMap::Contains(referencePtr))
+        {
+            SceneFusion::ObjectEventDispatcher->Create(referencePtr);
+        }
+    }
+    return sfPropertyUtil::FromString(str);
+}
+
 sfProperty::SPtr sfPropertyManager::FromUObject(UObject* uobjPtr)
 {
     sfUPropertyInstance nullPropInstance;
@@ -2117,11 +2191,16 @@ sfProperty::SPtr sfPropertyManager::GetClass(const sfUPropertyInstance& upropIns
 {
     UnrealClassProperty* tPtr = CastUnrealProperty<UnrealClassProperty>(upropInstance.Property());
     UObject* classPtr = tPtr->GetObjectPropertyValue(upropInstance.Data());
+    return CreatePropertyForClassReference(Cast<UClass>(classPtr));
+}
+
+sfProperty::SPtr sfPropertyManager::CreatePropertyForClassReference(UClass* classPtr)
+{
     if (classPtr == nullptr)
     {
         return sfNullProperty::Create();
     }
-    return sfPropertyUtil::FromString(sfUnrealUtils::ClassToFString(Cast<UClass>(classPtr)));
+    return sfPropertyUtil::FromString(sfUnrealUtils::ClassToFString(classPtr));
 }
 
 bool sfPropertyManager::SetClass(const sfUPropertyInstance& upropInstance, sfProperty::SPtr propPtr)

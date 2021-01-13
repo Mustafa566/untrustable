@@ -48,6 +48,9 @@ const sfName sfProp::MemberReference = "#memberReference";
 const sfName sfProp::Pins = "#pins";
 const sfName sfProp::Direction = "#direction";
 const sfName sfProp::LinkedTo = "#linkedTo";
+const sfName sfProp::DefaultValue = "#defaultValue";
+const sfName sfProp::DefaultObject = "#defaultObject";
+const sfName sfProp::DefaultText = "#defaultText";
 
 const sfName sfType::Actor = "Actor";
 const sfName sfType::Avatar = "Avatar";

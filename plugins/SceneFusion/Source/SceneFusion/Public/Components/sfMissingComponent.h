@@ -34,7 +34,7 @@ class UsfMissingComponent : public UActorComponent, public IsfMissingObject
 
 public:	
     // Name of the missing component class
-    UPROPERTY(VisibleAnywhere)
+    UPROPERTY(VisibleAnywhere, Category = "Scene Fusion")
     FString ClassName;
 
     UPROPERTY()

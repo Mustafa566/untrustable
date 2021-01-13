@@ -208,7 +208,7 @@ void sfUIOnlinePanel::DisplayLog(const FString& message, sfUIMessageBox::Icon ic
 {
     m_logPtr->SetMessage(message, icon, sfUIMessageBox::OnClickDelegate::CreateLambda([this]()
     {
-        FGlobalTabmanager::Get()->InvokeTab(FName("OutputLog"));
+        sfUnrealUtils::InvokeTab(FName("OutputLog"));
     }));
 }
 

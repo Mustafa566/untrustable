@@ -1,3 +1,21 @@
+/*************************************************************************
+ *
+ * KINEMATICOUP CONFIDENTIAL
+ * __________________
+ *
+ *  Copyright (2017-2020) KinematicSoup Technologies Incorporated
+ *  All Rights Reserved.
+ *
+ * NOTICE:  All information contained herein is, and remains
+ * the property of KinematicSoup Technologies Incorporated and its
+ * suppliers, if any.  The intellectual and technical concepts contained
+ * herein are proprietary to KinematicSoup Technologies Incorporated
+ * and its suppliers and may be covered by Canadian and Foreign Patents,
+ * patents in process, and are protected by trade secret or copyright law.
+ * Dissemination of this information or reproduction of this material
+ * is strictly forbidden unless prior written permission is obtained
+ * from KinematicSoup Technologies Incorporated.
+ */
 #pragma once
 
 #include "../../Public/Translators/sfBaseUObjectTranslator.h"
@@ -128,6 +146,14 @@ private:
     virtual void OnPropertyChange(sfProperty::SPtr propertyPtr) override;
 
     /**
+     * Called when a field is removed from a dictionary property.
+     *
+     * @param   sfDictionaryProperty::SPtr dictPtr the field was removed from.
+     * @param   const sfName& name of removed field.
+     */
+    virtual void OnRemoveField(sfDictionaryProperty::SPtr dictPtr, const sfName& name) override;
+
+    /**
      * Called when one or more elements are added to a list property.
      *
      * @param   sfListProperty::SPtr listPtr that elements were added to.
@@ -220,4 +246,28 @@ private:
      * @param   sfProperty::SPtr propertyPtr.
      */
     void MarkBlueprintModified(sfProperty::SPtr propertyPtr);
+
+    /**
+     * Creates property for the given pin's default object.
+     *
+     * @param   UEdGraphPin* pinPtr
+     * @return  sfProperty::SPtr
+     */
+    sfProperty::SPtr CreatePropertyForPinDefaultObject(UEdGraphPin* pinPtr);
+
+    /**
+     * Gets the pin default object from the given property.
+     *
+     * @param   sfProperty::SPtr propertyPtr.
+     * @return  UObject*
+     */
+    UObject* GetDefaultObjectFromProperty(sfProperty::SPtr defaultObjectProp);
+
+    /**
+     * Finds pin from the given property.
+     *
+     * @param   sfProperty::SPtr propertyPtr.
+     * @return  UEdGraphPin*
+     */
+    UEdGraphPin* FindPinFromProperty(sfProperty::SPtr pinProperty);
 };

@@ -120,7 +120,7 @@ void EmptyLinkFunctionForGeneratedCodesfMissingActor() {}
 	const UE4CodeGen_Private::FBytePropertyParams Z_Construct_UClass_AsfMissingActor_Statics::NewProp_ComponentCreationMethods_ValueProp_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AsfMissingActor_Statics::NewProp_ClassName_MetaData[] = {
-		{ "Category", "sfMissingActor" },
+		{ "Category", "Scene Fusion" },
 		{ "Comment", "// Name of the missing actor class\n" },
 		{ "ModuleRelativePath", "Public/Actors/sfMissingActor.h" },
 		{ "ToolTip", "Name of the missing actor class" },
@@ -172,7 +172,7 @@ void EmptyLinkFunctionForGeneratedCodesfMissingActor() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AsfMissingActor, 3149414919);
+	IMPLEMENT_CLASS(AsfMissingActor, 4011410957);
 	template<> SCENEFUSION_API UClass* StaticClass<AsfMissingActor>()
 	{
 		return AsfMissingActor::StaticClass();

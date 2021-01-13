@@ -433,6 +433,30 @@ public:
         return scriptMapHelper->Map;
     }
 #endif
+
+#if ENGINE_MAJOR_VERSION >= 4 && ENGINE_MINOR_VERSION >= 26
+    /**
+     * Opens tab.
+     *
+     * @param   FName tabName
+     * @return  TSharedPtr<SDockTab>
+     */
+    static TSharedPtr<SDockTab> InvokeTab(FName tabName)
+    {
+        return FGlobalTabmanager::Get()->TryInvokeTab(tabName);
+    }
+#else
+    /**
+     * Opens tab.
+     *
+     * @param   FName tabName
+     * @return  TSharedRef<SDockTab>
+     */
+    static TSharedRef<SDockTab> InvokeTab(FName tabName)
+    {
+        return FGlobalTabmanager::Get()->InvokeTab(tabName);
+    }
+#endif
 };
 
 #undef LOG_CHANNEL
